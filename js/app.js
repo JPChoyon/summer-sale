@@ -12,14 +12,14 @@ let discount = 0;
 function addToCart(event) {
   const card = event.currentTarget;
   const productName = card.querySelector('.text-xl.font-semibold').textContent;
-  const price = parseFloat(card.querySelector('.font-semibold.text-slate-500 span').textContent);;
+  const Productprice = parseFloat(card.querySelector('.font-semibold.text-slate-500 span').textContent);;
 
   const selectedItemDiv = document.getElementById('selected-item-container');
   const newElement = document.createElement('li');
   newElement.textContent = productName;
   selectedItemDiv.appendChild(newElement);
   console.log(newElement)
-  totalPrice += price;
+  totalPrice += Productprice;
   updateTotalPrice();
 }
 
@@ -28,15 +28,15 @@ function updateTotalPrice() {
   const totalText = document.querySelector('ul.space-y-2.font-semibold li:first-child');
   totalText.textContent = `Total Price: ${totalPrice.toFixed(2)} TK`;
 
-  const promoCodeInput = document.querySelector('input[type="text"]');
-  const applyButton = document.getElementById('apply');
-  if (promoCodeInput.value === 'SELL200' && totalPrice >= 200) {
-    applyButton.disabled =true;
+  const promoCode = document.querySelector('input[type="text"]');
+  const applyBtn = document.getElementById('apply');
+  if (promoCode.value === 'SELL200' && totalPrice >= 200) {
+    applyBtn.disabled =true;
   } else {
-    applyButton.disabled = false;
+    applyBtn.disabled = false;
   }
  
-  discount = promoCodeInput.value === 'SELL200' ? totalPrice * 0.2 : 0;
+  discount = promoCode.value === 'SELL200' ? totalPrice * 0.2 : 0;
   const discountText = document.querySelector('ul.space-y-2.font-semibold li:nth-child(2)');
   discountText.textContent = `Discount: ${discount.toFixed(2)} TK`;
 
