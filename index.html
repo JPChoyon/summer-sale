@@ -58,7 +58,7 @@
 
     <main class="w-10/12 mx-auto md:mt-28 grid lg:grid-flow-col-dense md:gap-6">
       <!-- total left  container  -->
-      <div class="total-left-container">
+      <div class="total-left-container card">
         <!-- kitchen container  -->
 
         <div class="kitchen-con">
@@ -69,7 +69,10 @@
             class="kitchen-item-con grid grid-cols-1 mt-4 gap-2 md:grid-cols-3 md:gap-6 md:mt-6"
           >
             <!-- item 1  -->
-            <div id="item-1" class="item-div bg-white rounded-xl">
+            <div
+              onclick="addToCart(this)"
+              class="item-div bg-white rounded-xl text-center"
+            >
               <div class="img-div bg-[#1111110D] md:m-5 rounded-xl">
                 <img
                   class="w-auto mx-auto p-2"
@@ -108,15 +111,16 @@
                 </div>
               </div>
 
-              <p id="item-1-name" class="text-xl font-semibold text-center">
-                K. Accessories
-              </p>
-              <p class="text-center font-semibold text-[#11111180]">
-                <span id="item-1-price">39.00</span> TK
+              <p class="text-xl font-semibold text-center">K. Accessories</p>
+              <p class="font-semibold text-slate-500 text">
+                <span>39.00 </span>TK
               </p>
             </div>
             <!-- item 2  -->
-            <div class="item-div bg-white rounded-xl">
+            <div
+              onclick="addToCart(this)"
+              class="item-div bg-white rounded-xl text-center"
+            >
               <div class="img-div bg-[#1111110D] md:m-5 rounded-xl">
                 <img
                   class="w-auto mx-auto"
@@ -154,13 +158,16 @@
                   />
                 </div>
               </div>
-              <p class="text-xl font-semibold text-center">K. Accessories</p>
-              <p class="text-center font-semibold text-[#11111180]">
-                <span>25.00</span> TK
+              <p class="text-xl font-semibold text-center">Wood Accessories</p>
+              <p class="font-semibold text-slate-500 text">
+                <span>25.00 </span>TK
               </p>
             </div>
             <!-- item 3  -->
-            <div class="item-div bg-white rounded-xl">
+            <div
+              onclick="addToCart(this)"
+              class="item-div bg-white rounded-xl text-center"
+            >
               <div class="img-div bg-[#1111110D] md:m-5 rounded-xl">
                 <img
                   class="w-auto mx-auto"
@@ -199,8 +206,8 @@
                 </div>
               </div>
               <p class="text-xl font-semibold text-center">Home Cooker</p>
-              <p class="text-center font-semibold text-[#11111180]">
-                <span>49.00</span> TK
+              <p class="font-semibold text-slate-500 text">
+                <span>49.00 </span>TK
               </p>
             </div>
           </div>
@@ -215,7 +222,10 @@
             class="kitchen-item-con grid grid-cols-1 gap-2 mt-2 md:grid-cols-3 md:gap-6 md:mt-6"
           >
             <!-- item 1  -->
-            <div class="item-div bg-white rounded-xl">
+            <div
+              onclick="addToCart(this)"
+              class="item-div bg-white rounded-xl text-center"
+            >
               <div class="img-div bg-[#1111110D] md:m-5 rounded-xl">
                 <img
                   class="w-auto mx-auto p-2"
@@ -255,12 +265,15 @@
               </div>
 
               <p class="text-xl font-semibold text-center">Sports Back Cap</p>
-              <p class="text-center font-semibold text-[#11111180]">
-                <span>49.00</span> TK
+              <p class="font-semibold text-slate-500 text">
+                <span>49.00 </span>TK
               </p>
             </div>
             <!-- item 2  -->
-            <div class="item-div bg-white rounded-xl">
+            <div
+              onclick="addToCart(this)"
+              class="item-div bg-white rounded-xl text-center"
+            >
               <div class="img-div bg-[#1111110D] md:m-5 rounded-xl">
                 <img
                   class="w-auto mx-auto"
@@ -299,12 +312,15 @@
                 </div>
               </div>
               <p class="text-xl font-semibold text-center">Full Jersey Set</p>
-              <p class="text-center font-semibold text-[#11111180]">
-                <span>69.00</span> TK
+              <p class="font-semibold text-slate-500 text">
+                <span>69.00 </span>TK
               </p>
             </div>
             <!-- item 3  -->
-            <div class="item-div bg-white rounded-xl">
+            <div
+              onclick="addToCart(this)"
+              class="item-div bg-white rounded-xl text-center"
+            >
               <div class="img-div bg-[#1111110D] md:m-5 rounded-xl">
                 <img
                   class="w-auto mx-auto"
@@ -343,8 +359,8 @@
                 </div>
               </div>
               <p class="text-xl font-semibold text-center">Sports cates</p>
-              <p class="text-center font-semibold text-[#11111180]">
-                <span>159.00</span> TK
+              <p class="font-semibold text-slate-500 text">
+                <span>159.00 </span>TK
               </p>
             </div>
           </div>
@@ -352,38 +368,65 @@
       </div>
 
       <!-- total right container  -->
-      <div class="total-right-container">
+      <div class="total-right-container md:text-center lg:text-start">
         <!-- apply cuppon  -->
 
         <div class="cupon bg-white p-5 mt-16 rounded-xl">
           <h3 class="text-2xl font-medium">Have coupon?</h3>
-          <label class="input-group">
+          <div class="flex items-center md:justify-center lg:justify-start">
             <input
               type="text"
-              placeholder="Coupon code"
-              class="input input-bordered"
+              class="px-4 py-3 border-2 rounded-lg"
+              placeholder="Enter a promo code"
             />
-            <button class="bg-[#E527B2] rounded text-white font-medium px-4">
+            <button class="btn btn-secondary text-white" id="apply" disabled>
               Apply
             </button>
-          </label>
+          </div>
         </div>
 
         <!-- slected items here  -->
-        <div class="slected-item"></div>
-        <hr />
+        <div
+          id="selected-item-container"
+          class="slected-item bg-white list-decimal font-medium text-xl mt-2 rounded-xl"
+        ></div>
 
         <!-- price for items  -->
-        <div class="price-con"></div>
-        <hr />
+        <hr class="my-5 border" />
+        <ul class="space-y-2 font-semibold bg-white rounded-xl">
+          <li>Total Price:</li>
+          <li>Discount:</li>
+          <li>Total:</li>
+        </ul>
+        <hr class="my-5 border" />
 
         <!-- Purchase button  -->
         <button
-          class="w-max text-center bg-[#E527B2] rounded text-white font-medium px-16 py-5"
+          onclick="my_modal_1.showModal()"
+          id="perchase"
+          class="w-max text-center btn bg-[#E527B2] rounded text-white font-medium px-16 py-5"
+          disabled
         >
           Make Purchase
         </button>
       </div>
+      <dialog id="my_modal_1" class="modal">
+        <form method="dialog" class="modal-box">
+          <div class="w-3/10 text-center">
+            <img class="pl-40" src="./images/congo.png" alt="" />
+            <h1 class="text-4xl font-bold pb-4">Congratulations</h1>
+            <p class="">You purchase the product</p>
+            <div class="modal-action">
+              <a
+                id="goHomeButton"
+                class="btn btn-secondary text-white items-center"
+                href="/index.html"
+                >Go Home</a
+              >
+            </div>
+          </div>
+        </form>
+      </dialog>
     </main>
 
     <!-- javascript link  -->

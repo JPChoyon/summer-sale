@@ -1,42 +1,60 @@
-// function getValueAndName(target){
-//     const result = target.parentNode.childNodes[2].innerText;
-//     console.log(result)
-// }
+// loop for each Element 
+const cards = document.querySelectorAll('.item-div');
+cards.forEach(card => {
+  card.addEventListener('click', addToCart);
+});
 
-// function getInputField(id){
-//     const inputField = document.getElementById(id);
-//     return inputField;
-// }
+// initial value set 
+let totalPrice = 0;
+let discount = 0;
 
-// document.getElementById('item-1').addEventListener('click',function(){
-//     const nameField = document.getElementById('item-1-name');
-//     const nameValue = nameField.innerText;
+// function for cart 
+function addToCart(event) {
+  const card = event.currentTarget;
+  const productName = card.querySelector('.text-xl.font-semibold').textContent;
+  const price = parseFloat(card.querySelector('.font-semibold.text-slate-500 span').textContent);;
 
-//     const priceField = document.getElementById('item-1-price');
-//     const priceValue = parseFloat(priceField.innerText);
-//     console.log(nameValue, priceValue);
-//     return nameValue, priceValue;
-// })
+  const selectedItemDiv = document.getElementById('selected-item-container');
+  const newElement = document.createElement('li');
+  newElement.textContent = productName;
+  selectedItemDiv.appendChild(newElement);
+  console.log(newElement)
+  totalPrice += price;
+  updateTotalPrice();
+}
 
-// console.log(nameValue, priceValue);
+// function for update price list 
+function updateTotalPrice() {
+  const totalText = document.querySelector('ul.space-y-2.font-semibold li:first-child');
+  totalText.textContent = `Total Price: ${totalPrice.toFixed(2)} TK`;
 
-  // Function to show item name and price
-  function showItemInfo() {
-    const itemName = document.getElementById('item-1-name').textContent;
-    const itemPrice = document.getElementById('item-1-price').textContent;
+  const promoCodeInput = document.querySelector('input[type="text"]');
+  const applyButton = document.getElementById('apply');
+  if (promoCodeInput.value === 'SELL200' && totalPrice >= 200) {
+    applyButton.disabled =true;
+  } else {
+    applyButton.disabled = false;
+  }
+ 
+  discount = promoCodeInput.value === 'SELL200' ? totalPrice * 0.2 : 0;
+  const discountText = document.querySelector('ul.space-y-2.font-semibold li:nth-child(2)');
+  discountText.textContent = `Discount: ${discount.toFixed(2)} TK`;
 
-    // Create a new element to display the item info
-    const itemInfoElement = document.createElement('div');
-    itemInfoElement.classList.add('item-info');
-    itemInfoElement.innerHTML = `
-      <p><strong>Item Name:</strong> ${itemName}</p>
-      <p><strong>Item Price:</strong> ${itemPrice} TK</p>
-    `;
+  const totalAfterDiscount = totalPrice - discount;
+  const totalAfterDiscountText = document.querySelector('ul.space-y-2.font-semibold li:last-child');
+  totalAfterDiscountText.textContent = `Total: ${totalAfterDiscount.toFixed(2)} TK`;
 
-    // Append the new element to the document
-    document.body.appendChild(itemInfoElement);
+  const perchaseBtn = document.getElementById('perchase');
+  if (totalPrice === 0) {
+    perchaseBtn.disabled = true;
+  } else {
+    perchaseBtn.disabled = false;
   }
 
-  // Add a click event listener to the main div
-  const mainDiv = document.getElementById('item-1');
-  mainDiv.addEventListener('click', showItemInfo);
+}
+
+const applyButton = document.getElementById('apply');
+applyButton.addEventListener('click', updateTotalPrice);
+
+const goHomeButton = document.getElementById("goHomeButton");
+
