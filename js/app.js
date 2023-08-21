@@ -30,7 +30,7 @@ function updateTotalPrice() {
 
   const promoCode = document.querySelector('input[type="text"]');
   const applyBtn = document.getElementById('apply');
-  if (totalPrice > 200) {
+  if (totalPrice >= 200) {
     applyBtn.removeAttribute("disabled");
   } else {
     applyBtn.setAttribute("disabled", "true");
