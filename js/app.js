@@ -30,12 +30,12 @@ function updateTotalPrice() {
 
   const promoCode = document.querySelector('input[type="text"]');
   const applyBtn = document.getElementById('apply');
-  if (promoCode.value === 'SELL200' && totalPrice >= 200) {
-    applyBtn.disabled =true;
+  if (totalPrice > 200) {
+    applyBtn.removeAttribute("disabled");
   } else {
-    applyBtn.disabled = false;
+    applyBtn.setAttribute("disabled", "true");
   }
- 
+
   discount = promoCode.value === 'SELL200' ? totalPrice * 0.2 : 0;
   const discountText = document.querySelector('ul.space-y-2.font-semibold li:nth-child(2)');
   discountText.textContent = `Discount: ${discount.toFixed(2)} TK`;
